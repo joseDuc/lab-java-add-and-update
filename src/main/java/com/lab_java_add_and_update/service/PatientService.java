@@ -6,6 +6,7 @@ import com.lab_java_add_and_update.model.Patient;
 import com.lab_java_add_and_update.repository.EmployeeRepository;
 import com.lab_java_add_and_update.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -39,5 +40,9 @@ public class PatientService {
 
     public List<Patient> getByEmployeeStatus(EmployeeStatus status){
         return patientRepository.findByEmployeeStatus(status);
+    }
+
+    public Patient createPatient(Patient patient){
+        return patientRepository.save(patient);
     }
 }

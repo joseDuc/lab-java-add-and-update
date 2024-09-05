@@ -47,4 +47,9 @@ public class PatientController {
     public List<Patient> getByEmployeeStatus(EmployeeStatus status){
         return patientService.getByEmployeeStatus(status);
     }
+
+    @PostMapping
+    public Patient createPatient(@RequestBody Patient patient){
+        return patientService.createPatient(patient);
+    }
 }
