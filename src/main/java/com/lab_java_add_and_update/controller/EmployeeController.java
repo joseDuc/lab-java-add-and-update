@@ -1,9 +1,11 @@
 package com.lab_java_add_and_update.controller;
 
+import com.lab_java_add_and_update.DTO.EmployeeUpdateStatusDTO;
 import com.lab_java_add_and_update.Enums.EmployeeDepartment;
 import com.lab_java_add_and_update.Enums.EmployeeStatus;
 import com.lab_java_add_and_update.model.Employee;
 import com.lab_java_add_and_update.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +37,35 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
+    @GetMapping("/find/statusOff")
+    public ResponseEntity<List<Employee>> getByEmployeeStatusOff(){
+        List<Employee> employees = employeeService.getByStatus(EmployeeStatus.OFF);
+        return ResponseEntity.ok(employees);
+    }
+
     @GetMapping("/find/department")
     public ResponseEntity<List<Employee>> getByDepartment(EmployeeDepartment department){
         List<Employee> employees =employeeService.getByDepartment(department);
         return  ResponseEntity.ok(employees);
     }
+
+    @PostMapping()
+    public Employee createEmployee(@RequestBody Employee employee){
+       return employeeService.createEmployee(employee);
+    }
+
+    @PatchMapping("/update/status/{id}")
+    public ResponseEntity<Employee> changeStatus(@PathVariable Integer id, EmployeeUpdateStatusDTO employeeUpdateStatusDTO){
+        Optional<Employee> updateEmployee=employeeService.updateEmployeeStatus(id,employeeUpdateStatusDTO);
+        return updateEmployee.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/update/department/{id}")
+    public ResponseEntity<Employee> changeDepartment(@PathVariable Integer id,@RequestBody Employee employee){
+        Optional<Employee> updateEmployee=employeeService.updateEmployeeDepartment(id,employee);
+        return updateEmployee.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
+    }
+
+
 
 }

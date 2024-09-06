@@ -42,7 +42,15 @@ public class PatientService {
         return patientRepository.findByEmployeeStatus(status);
     }
 
-    public Patient createPatient(Patient patient){
+    public Patient create(Patient patient){
         return patientRepository.save(patient);
+    }
+
+    public Optional<Patient> update(Long id , Patient patient){
+        if (patientRepository.existsById(id)){
+            patient.setId(id);
+            return Optional.of( patientRepository.save(patient));
+        }
+        return Optional.empty();
     }
 }

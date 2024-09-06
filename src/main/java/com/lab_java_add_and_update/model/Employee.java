@@ -7,6 +7,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -16,6 +17,7 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     EmployeeDepartment department;
     String name;
+
     @Enumerated(EnumType.STRING)
     EmployeeStatus status;
 

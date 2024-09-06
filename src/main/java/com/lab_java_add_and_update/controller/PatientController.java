@@ -48,8 +48,19 @@ public class PatientController {
         return patientService.getByEmployeeStatus(status);
     }
 
+    @GetMapping("/find/employeeStatusOff")
+    public List<Patient> getByEmployeeStatusOff(){
+        return patientService.getByEmployeeStatus(EmployeeStatus.OFF);
+    }
+
     @PostMapping
-    public Patient createPatient(@RequestBody Patient patient){
-        return patientService.createPatient(patient);
+    public Patient create(@RequestBody Patient patient){
+        return patientService.create(patient);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient){
+        Optional<Patient> updatedPatient =patientService.update(id,patient);
+        return updatedPatient.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
 }
