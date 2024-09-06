@@ -31,11 +31,11 @@ public class EmployeeService {
         return employeeRepository.findByDepartment(department);
     }
 
-    public Employee createEmployee(Employee employee){
+    public Employee create(Employee employee){
         return employeeRepository.save(employee);
     }
 
-    public Optional<Employee> updateEmployeeStatus(Integer id, EmployeeUpdateStatusDTO employeeUpdateStatusDTO){
+    public Optional<Employee> updateStatus(Integer id, EmployeeUpdateStatusDTO employeeUpdateStatusDTO){
         Optional<Employee> employeeOptional = employeeRepository.findById(id);
         if(employeeOptional.isPresent()){
             Employee employee=employeeOptional.get();
@@ -47,7 +47,7 @@ public class EmployeeService {
         return Optional.empty();
     }
 
-    public Optional<Employee> updateEmployeeDepartment(Integer id, Employee  employee){
+    public Optional<Employee> updateDepartment(Integer id, Employee  employee){
         Optional<Employee> employeeOptional = employeeRepository.findById(id);
         if(employeeOptional.isPresent()){
             Employee updatedEmployee=employeeOptional.get();

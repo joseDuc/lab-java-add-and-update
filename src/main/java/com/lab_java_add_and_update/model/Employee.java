@@ -7,18 +7,18 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.NonNull;
+
 
 @Data
 @Entity
 public class Employee {
     @Id
-    Integer id;
+    private Integer id;
     @Enumerated(EnumType.STRING)
-    EmployeeDepartment department;
-    String name;
+    private EmployeeDepartment department;
+    private String name;
 
     @Enumerated(EnumType.STRING)
-    EmployeeStatus status;
+    private EmployeeStatus status;
 
 }

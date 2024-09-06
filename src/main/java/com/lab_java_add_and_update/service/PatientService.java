@@ -3,10 +3,9 @@ package com.lab_java_add_and_update.service;
 import com.lab_java_add_and_update.Enums.EmployeeDepartment;
 import com.lab_java_add_and_update.Enums.EmployeeStatus;
 import com.lab_java_add_and_update.model.Patient;
-import com.lab_java_add_and_update.repository.EmployeeRepository;
 import com.lab_java_add_and_update.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,9 +17,6 @@ public class PatientService {
 
     @Autowired
     PatientRepository patientRepository;
-
-    @Autowired
-    EmployeeRepository employeeRepository;
 
     public List<Patient> getAll(){
         return patientRepository.findAll();

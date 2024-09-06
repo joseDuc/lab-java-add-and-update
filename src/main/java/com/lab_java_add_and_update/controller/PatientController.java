@@ -59,7 +59,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient){
+    public ResponseEntity<Patient> update(@PathVariable Long id, @RequestBody Patient patient){
         Optional<Patient> updatedPatient =patientService.update(id,patient);
         return updatedPatient.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }

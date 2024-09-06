@@ -66,7 +66,16 @@ Create the following routes as efficiently as possible, using validation where a
    - What are the advantages and disadvantages of the strategies you chose for creating these routes?
    - What is the cost-benefit between using `PUT` and `PATCH`?
 
-<br>  
+
+### Answers 
+
+   - Yes. 
+   - I understand than Change=PATCH and Update=PUT in any case in the requirements. 
+   - I would have used PATCH with a different DTO in each case when modifying 'status' and 'department'.
+   - In PATCH I can control the data required from the user through DTO.
+   In PUT the user knows that he can supposedly change most of the data in one action.
+   In this way, a coherent dialogue can be maintained with the user in each service.
+
 
 ## FAQs
 

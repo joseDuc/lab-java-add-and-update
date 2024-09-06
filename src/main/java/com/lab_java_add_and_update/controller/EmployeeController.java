@@ -5,7 +5,7 @@ import com.lab_java_add_and_update.Enums.EmployeeDepartment;
 import com.lab_java_add_and_update.Enums.EmployeeStatus;
 import com.lab_java_add_and_update.model.Employee;
 import com.lab_java_add_and_update.service.EmployeeService;
-import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,19 +50,19 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public Employee createEmployee(@RequestBody Employee employee){
-       return employeeService.createEmployee(employee);
+    public Employee create(@RequestBody Employee employee){
+       return employeeService.create(employee);
     }
 
     @PatchMapping("/update/status/{id}")
     public ResponseEntity<Employee> changeStatus(@PathVariable Integer id, EmployeeUpdateStatusDTO employeeUpdateStatusDTO){
-        Optional<Employee> updateEmployee=employeeService.updateEmployeeStatus(id,employeeUpdateStatusDTO);
+        Optional<Employee> updateEmployee=employeeService.updateStatus(id,employeeUpdateStatusDTO);
         return updateEmployee.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PutMapping("/update/department/{id}")
-    public ResponseEntity<Employee> changeDepartment(@PathVariable Integer id,@RequestBody Employee employee){
-        Optional<Employee> updateEmployee=employeeService.updateEmployeeDepartment(id,employee);
+    public ResponseEntity<Employee> updateDepartment(@PathVariable Integer id,@RequestBody Employee employee){
+        Optional<Employee> updateEmployee=employeeService.updateDepartment(id,employee);
         return updateEmployee.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
 

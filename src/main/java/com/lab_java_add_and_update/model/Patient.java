@@ -10,10 +10,10 @@ import java.time.LocalDate;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    LocalDate dateOfBirth;
+    private Long id;
+    private String name;
+    private LocalDate dateOfBirth;
     @ManyToOne
     @JoinColumn(name = "admittedBy")
-    Employee admittedBy;
+    private Employee admittedBy;
 }
